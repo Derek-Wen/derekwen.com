@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Derek Wen</title>
+  <meta name="description"
+    content="Derek Wen - Graduate student at UCLA studying applied statistics and data science. Software developer, video editor, and musician.">
+  <meta name="keywords"
+    content="Derek Wen, Data Science, Machine Learning, UCLA, Software Engineer, Video Editor, Music">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.ico" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- GSAP & ScrollTrigger for smooth animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis for smooth scrolling -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Typed.js for typing effect -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <!-- Journey CSS -->
+  <link href="assets/css/journey.css" rel="stylesheet">
+</head>
+
+<body class="journey-page">
+
+  <!-- Fluid Cursor Canvas -->
+  <div class="fluid-cursor-container">
+    <canvas id="fluid"></canvas>
+  </div>
+
+  <!-- Preloader -->
+  <div id="preloader"
+    style="position:fixed;inset:0;z-index:99999;background:#05080f;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s;">
+    <div
+      style="width:40px;height:40px;border:3px solid rgba(74,144,217,0.2);border-top-color:#4a90d9;border-radius:50%;animation:spin 1s linear infinite;">
+    </div>
+    <style>
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress">
+    <div class="scroll-progress__bar"></div>
+  </div>
+
+  <!-- Floating Navigation -->
+  <nav class="floating-nav">
+    <a href="#hero" class="floating-nav__logo">derek wen</a>
+    <button class="floating-nav__toggle" aria-label="Toggle navigation">
+      <i class="bi bi-list"></i>
+    </button>
+    <div class="floating-nav__links">
+      <a href="#hero" class="floating-nav__link">about</a>
+      <a href="#career" class="floating-nav__link">career</a>
+      <a href="#projects" class="floating-nav__link">projects</a>
+      <a href="#video-editing" class="floating-nav__link">video</a>
+      <a href="#music" class="floating-nav__link">music</a>
+      <a href="assets/resume.pdf" target="_blank" class="floating-nav__link">cv</a>
+    </div>
+  </nav>
+
+  <!-- Journey Container -->
+  <div class="journey">
+
+    <!-- Aurora Animated Background -->
+    <div class="aurora-bg">
+      <div class="aurora-orb aurora-orb--1"></div>
+      <div class="aurora-orb aurora-orb--2"></div>
+      <div class="aurora-orb aurora-orb--3"></div>
+    </div>
+
+    <!-- ============================================================
+         HERO SECTION
+         ============================================================ -->
+    <section id="hero" class="journey-section hero-section">
+      <div class="journey-section__content">
+        <p class="hero-subtitle reveal">derek.hz.wen@gmail.com</p>
+        <h1 class="section-heading reveal reveal-delay-1">hi, i'm derek wen</h1>
+        <p class="hero-typed reveal reveal-delay-2">
+          i do <span class="typed"
+            data-typed-items="data science, software engineering, statistics, video editing, motion design, singing"></span>
+        </p>
+
+        <div class="hero-bio reveal reveal-delay-3">
+          I'm a graduate student at <span class="highlight2">UCLA</span> studying for a <span class="highlight2">
+            Master's in Applied Statistics
+            and Data Science </span>with a few years of work experience. I did my undergraduate at <span
+            class="highlight2">UCSD</span>
+          for a <span class="highlight2">Bachelors in Data Science</span>, graduating <span class="highlight">Summa Cum
+            Laude</span>.
+          <br><br>
+          Most recently, I had the opportunity to intern at <span class="highlight2">Amazon</span> as a <span
+            class="highlight2">software developer engineer </span> for Prime Video. My main interest is applying
+          statistical analysis
+          and machine learning techniques to study user behavior and trends, but I am open to all types of
+          opportunities!
+          <br><br>
+          I have a <a href="https://www.youtube.com/@Airikan" target="_blank">Youtube</a> and a
+          <a href="https://open.spotify.com/artist/59jdx1Kv1BDDITZndG0eMj?si=YCgXIXGzTxCbpgzb5lT2Zg"
+            target="_blank">Spotify Artist</a>
+          where I share all my creative work.
+        </div>
+
+        <div class="social-links reveal reveal-delay-4">
+          <a href="https://www.youtube.com/@Airikan" target="_blank" aria-label="YouTube"><i
+              class="bi bi-youtube"></i></a>
+          <a href="https://x.com/Airikan_" target="_blank" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+          <a href="https://www.instagram.com/dwen.hz/" target="_blank" aria-label="Instagram"><i
+              class="bi bi-instagram"></i></a>
+          <a href="https://open.spotify.com/artist/59jdx1Kv1BDDITZndG0eMj?si=oDcAJ3T3RmerWsZ-K6ex4g" target="_blank"
+            aria-label="Spotify"><i class="bi bi-spotify"></i></a>
+          <a href="https://www.linkedin.com/in/derek-h-wen/" target="_blank" aria-label="LinkedIn"><i
+              class="bi bi-linkedin"></i></a>
+          <a href="https://github.com/Derek-Wen" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CAREER SECTION
+         ============================================================ -->
+    <section id="career" class="journey-section">
+      <div class="journey-section__content">
+        <p class="section-label reveal">career</p>
+        <h2 class="section-heading reveal">work experience</h2>
+
+        <div class="timeline">
+          <div class="timeline-line"></div>
+          <div class="timeline-item">
+            <div class="timeline-date">July 2026 – Present</div>
+            <div class="timeline-company">AT&T</div>
+            <div class="timeline-role">Data Science Engineer</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">June 2025 – September 2025</div>
+            <div class="timeline-company">Amazon - Prime Video</div>
+            <div class="timeline-role">Software Development Engineer Intern</div>
+            <ul class="timeline-bullets">
+              <li>Developed a prototype web video player supporting <span class="highlight2">a new proprietary Prime
+                  Video manifest format,
+                  reducing Time to First Frame (TTFF) by up to 600ms</span> compared to the existing DASH
+                implementation
+              </li>
+              <li>Created a parser for the proprietary manifest format leveraging the binary encoding format
+                FlatBuffers, <span class="highlight2">achieving 0ms parsing time during playback startup</span></li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">April 2023 – February 2024</div>
+            <div class="timeline-company">Claritas</div>
+            <div class="timeline-role">Data Science Intern</div>
+            <ul class="timeline-bullets">
+              <li>Developed a scalable PySpark pipeline, filtering over <span class="highlight2">1 million</span> IP
+                addresses across diverse data sources using multiple API integrations.</li>
+              <li>Automated the extraction of campaign data from Parquet files, calculated daily data quality metrics,
+                and developed dynamic dashboards, <span class="highlight2">saving 2 hours of daily manual work.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">July 2021 – August 2021</div>
+            <div class="timeline-company">Nurlink Technology</div>
+            <div class="timeline-role">Data Analyst Intern</div>
+            <ul class="timeline-bullets">
+              <li>Created an automation tool to clean and preprocess incoming daily circuitry data and historical
+                datasets, <span class="highlight2">reducing manual processing time by ~1 hour/day.</span></li>
+              <li>Applied principal component analysis for 2D visualizations, isolating noise in output power.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Jan 2019 – June 2020</div>
+            <div class="timeline-company">San Diego State University (SDSU)</div>
+            <div class="timeline-role">Data Analyst Intern</div>
+            <ul class="timeline-bullets">
+              <li>Analyzed integrated circuit data, processing over <span class="highlight2">1,000 features</span>
+                across datasets of <span class="highlight2">50,000+ samples</span>, identifying key trends and
+                creating
+                visualizations to enhance circuit performance.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS SECTION
+         ============================================================ -->
+    <section id="projects" class="journey-section projects-thread-section">
+      <div class="journey-section__content">
+        <p class="section-label reveal">building things</p>
+        <h2 class="section-heading reveal">projects</h2>
+        <p class="section-text reveal">A mix of professional data science work and fun personal projects</p>
+      </div>
+
+      <!-- Scroll Thread Container -->
+      <div class="scroll-thread-container">
+        <!-- SVG Thread Path -->
+        <svg class="scroll-thread" viewBox="0 0 100 2000" preserveAspectRatio="none">
+          <defs>
+            <filter id="thread-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <path class="scroll-thread__path" filter="url(#thread-glow)" />
+        </svg>
+
+        <!-- Projects Along Thread -->
+        <div class="thread-projects">
+          <article class="thread-project" data-index="0">
+            <a href="portfolio-details-dsc180b.html" class="thread-project__link-wrapper">
+              <div class="thread-project__card">
+                <img src="assets/img/portfolio/dsc180b-traversal.gif" alt="Utility Pole Monitoring"
+                  class="thread-project__image">
+                <div class="thread-project__content">
+                  <h3 class="thread-project__title">Enhancing Utility Pole Monitoring with Computer Vision</h3>
+                  <p class="thread-project__desc">A collaboration with SDGE using computer vision for utility pole
+                    monitoring</p>
+                  <span class="thread-project__link">View Details <i class="bi bi-arrow-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="thread-project" data-index="1">
+            <a href="portfolio-details-jumping-jumper.html" class="thread-project__link-wrapper">
+              <div class="thread-project__card">
+                <img src="assets/img/portfolio/jumpingjumper1.png" alt="Jumping Jumper" class="thread-project__image">
+                <div class="thread-project__content">
+                  <h3 class="thread-project__title">Jumping Jumper</h3>
+                  <p class="thread-project__desc">A fun multiplayer browser platformer game</p>
+                  <span class="thread-project__link">View Details <i class="bi bi-arrow-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="thread-project" data-index="2">
+            <a href="portfolio-details-shiba-cafe.html" class="thread-project__link-wrapper">
+              <div class="thread-project__card">
+                <img src="assets/img/portfolio/shiba-cafe.jpg" alt="Shiba Winter Cafe" class="thread-project__image">
+                <div class="thread-project__content">
+                  <h3 class="thread-project__title">Shiba Winter Cafe</h3>
+                  <p class="thread-project__desc">A cozy winter-themed cafe clicker</p>
+                  <span class="thread-project__link">View Details <i class="bi bi-arrow-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="thread-project" data-index="3">
+            <a href="portfolio-details-stats418.html" class="thread-project__link-wrapper">
+              <div class="thread-project__card">
+                <img src="assets/img/portfolio/stats418-1.png" alt="Spotify Cover Art Quiz"
+                  class="thread-project__image">
+                <div class="thread-project__content">
+                  <h3 class="thread-project__title">Spotify Cover Art Quiz</h3>
+                  <p class="thread-project__desc">Test your knowledge of Spotify songs by their cover art</p>
+                  <span class="thread-project__link">View Details <i class="bi bi-arrow-right"></i></span>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         VIDEO EDITING SECTION
+         ============================================================ -->
+    <section id="video-editing" class="journey-section">
+      <div class="journey-section__content">
+        <p class="section-label reveal">creative outlet</p>
+        <h2 class="section-heading reveal">video editing</h2>
+        <p class="section-text reveal">Motion design and video editing work for various projects</p>
+
+        <div class="gallery-grid">
+          <a href="https://www.youtube.com/watch?v=uVlDC0YzvsY" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/yuki.jpg" alt="Welcome Yuki Aim Kimmy">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">Welcome Yuki Aim Kimmy</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=WQWNsSY4w34" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/dyingtoseeu.png" alt="DYING TO SEE YOU">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">DYING TO SEE YOU</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=BwnMdCqsLQg" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/taxi.jpg" alt="Taxi">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">Taxi</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=XEhZlF93zgM" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/racksupstrap.jpg" alt="RACKS UP STRAP">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">RACKS UP STRAP</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=oTpVMwUW6ks" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/sugar crush1.jpg" alt="sugar crush">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">sugar crush</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=GFDXaGlOAm0" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/accept.jpg" alt="accept">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">accept</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=Sruu-BmRl0k" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/trust u.jpg" alt="trust u">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">trust u</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=Dp53WB4V-FE" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/dontgo.jpg" alt="dont go">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">dont go</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=twD6t4OGKaM" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/youandme.jpg" alt="you and me">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">you and me</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=blc9ZdVXsc0" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/twotimefakers.jpg" alt="TWO TIME FAKERS">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">TWO TIME FAKERS</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=zOsqyeuUvto" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/rtf.jpg" alt="reaching too far (mirin remix)">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">reaching too far (mirin remix)</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=Z9yFVDTcpJU" target="_blank" class="gallery-item">
+            <img src="assets/img/gallery/tgex.jpg" alt="TGEX 2023">
+            <div class="gallery-item__overlay">
+              <div class="gallery-item__title">TGEX 2023</div>
+              <div class="gallery-item__links">
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MUSIC SECTION
+         ============================================================ -->
+    <section id="music" class="journey-section">
+      <div class="journey-section__content">
+        <p class="section-label reveal">another creative outlet</p>
+        <h2 class="section-heading reveal">music</h2>
+        <p class="section-text reveal">My personal songs</p>
+
+        <!-- Year 4 -->
+        <div class="music-year reveal">
+          <h3 class="music-year__title">year 4</h3>
+          <p class="music-year__subtitle">solo.</p>
+        </div>
+
+        <!-- Year 3 -->
+        <div class="music-year reveal">
+          <h3 class="music-year__title">year 3</h3>
+          <p class="music-year__subtitle">experimenting.</p>
+          <div class="music-grid">
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/2BYIIuveZuiQFrfbaXQwT3?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/2YkyXcxICUYWgcWcQ73cUl?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/4Q6k3ZujHQtrl1OmuXAyUi?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/7xHhAogCl2zWWNMOWB8GMY?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year 2 -->
+        <div class="music-year reveal">
+          <h3 class="music-year__title">year 2</h3>
+          <p class="music-year__subtitle">figuring things out.</p>
+          <div class="music-grid">
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/0cP9pFcTTHM3bdeTBhLI42?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/0fAxd8ZIFIrI7CqjX0faf0?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/28q5ayWFImcNdF0K5VZDO8?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/6Z3wT9OTPvX8y4vVPDuRji?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year 1 -->
+        <div class="music-year reveal">
+          <h3 class="music-year__title">year 1</h3>
+          <p class="music-year__subtitle">starting out.</p>
+          <div class="music-grid">
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/0FhQD7YBmIpN7k7lZS9u7O?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/4RKBnZQHdT94jbhCGusIQP?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+            <div class="music-embed">
+              <iframe style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/7BFpi1NVX0d3Dg2WE4O3tT?utm_source=generator&theme=0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="journey-footer">
+      <p class="journey-footer__message reveal">thanks for stopping by :)</p>
+      <div class="social-links reveal" style="margin-bottom: 24px;">
+        <a href="https://www.youtube.com/@Airikan" target="_blank" aria-label="YouTube"><i
+            class="bi bi-youtube"></i></a>
+        <a href="https://x.com/Airikan_" target="_blank" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+        <a href="https://www.instagram.com/dwen.hz/" target="_blank" aria-label="Instagram"><i
+            class="bi bi-instagram"></i></a>
+        <a href="https://open.spotify.com/artist/59jdx1Kv1BDDITZndG0eMj" target="_blank" aria-label="Spotify"><i
+            class="bi bi-spotify"></i></a>
+        <a href="https://www.linkedin.com/in/derek-h-wen/" target="_blank" aria-label="LinkedIn"><i
+            class="bi bi-linkedin"></i></a>
+        <a href="https://github.com/Derek-Wen" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+      </div>
+      <p class="journey-footer__copyright">
+        Copyright 2026 <strong>derek wen</strong> All Rights Reserved
+      </p>
+    </footer>
+
+  </div><!-- End Journey Container -->
+
+  <!-- Journey JS -->
+  <script src="assets/js/journey.js"></script>
+
+  <!-- Fluid Cursor -->
+  <script src="assets/js/fluid-cursor.js"></script>
+
+</body>
+
+</html>

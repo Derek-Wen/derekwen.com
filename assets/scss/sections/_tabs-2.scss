@@ -1,0 +1,117 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# Tabs 2 Section
+--------------------------------------------------------------*/
+.tabs-2 {
+  .nav-tabs {
+    border: 0;
+    background-color: color-mix(in srgb, var(--default-color), transparent 96%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    padding: 6px;
+    width: auto;
+  }
+
+  .nav-item {
+    margin: 0;
+    padding: 0 5px 0 0;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .nav-link {
+    background-color: none;
+    color: var(--heading-color);
+    padding: 10px 30px;
+    transition: 0.3s;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 100%;
+    border: 0;
+    margin: 0;
+
+    @media (max-width: 468px) {
+      padding: 8px 20px;
+    }
+
+    i {
+      padding-right: 15px;
+      font-size: 48px;
+    }
+
+    h4 {
+      font-size: 14px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    &:hover {
+      h4 {
+        color: var(--accent-color);
+      }
+
+      border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+    }
+
+    &.active {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+
+      h4 {
+        color: var(--contrast-color);
+      }
+    }
+  }
+
+  .tab-content {
+    margin-top: 30px;
+  }
+
+  .tab-pane {
+    h3 {
+      color: var(--heading-color);
+      font-weight: 700;
+      font-size: 32px;
+      position: relative;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-color);
+        left: 0;
+        bottom: 0;
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        padding-top: 10px;
+      }
+
+      i {
+        font-size: 20px;
+        padding-right: 4px;
+        color: var(--accent-color);
+      }
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

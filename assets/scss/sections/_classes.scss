@@ -1,0 +1,106 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# Classes Section
+--------------------------------------------------------------*/
+.classes {
+  .nav-tabs {
+    text-align: center;
+    margin: auto;
+    display: block;
+    border-bottom: 0;
+    margin-bottom: 30px;
+
+    li {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+
+    a {
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      background-color: color-mix(in srgb, var(--default-color), transparent 90%);
+      color: var(--default-color);
+      padding: 10px 100px;
+
+      @media (max-width: 991px) {
+        padding: 8px 60px;
+      }
+
+      @media (max-width: 767px) {
+        padding: 8px 50px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 8px 30px;
+      }
+
+      &.active {
+        background-color: var(--accent-color);
+        color: var(--contrast-color);
+      }
+    }
+  }
+
+  .sub-heading {
+    text-align: center;
+    font-size: 18px;
+    font-style: italic;
+    margin: 0 auto 30px auto;
+
+    @media (min-width: 991px) {
+      width: 75%;
+    }
+  }
+
+  .tab-pane {
+    transition: ease-in-out .2s;
+  }
+
+  .schedule-item {
+    border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    transition: background-color ease-in-out 0.3s;
+
+    time {
+      padding-bottom: 5px;
+      display: inline-block;
+    }
+
+    .speaker {
+      width: 60px;
+      height: 60px;
+      overflow: hidden;
+      border-radius: 50%;
+      float: left;
+      margin: 0 10px 10px 0;
+
+      img {
+        height: 100%;
+        transform: translateX(-50%);
+        margin-left: 50%;
+        transition: all ease-in-out 0.3s;
+      }
+    }
+
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+
+      span {
+        font-style: italic;
+        color: color-mix(in srgb, var(--default-color), transparent 50%);
+        font-weight: normal;
+        font-size: 16px;
+      }
+    }
+
+    p {
+      font-style: italic;
+      color: color-mix(in srgb, var(--default-color), transparent 30%);
+      margin-bottom: 0;
+    }
+  }
+}

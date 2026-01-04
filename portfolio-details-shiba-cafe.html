@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Shiba Winter Cafe - Derek Wen</title>
+    <meta name="description" content="Shiba Winter Cafe - A cozy winter-themed cafe experience">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Journey CSS -->
+    <link href="assets/css/journey.css" rel="stylesheet">
+
+    <style>
+        .project-page {
+            min-height: 100vh;
+            background: var(--mono-black);
+            color: var(--mono-white);
+            padding: 80px 24px;
+        }
+
+        .project-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--mono-silver);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .project-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid var(--mono-mid);
+            color: var(--mono-white);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .project-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .project-btn--primary {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .project-btn--primary:hover {
+            background: transparent;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--mono-light);
+            margin-bottom: 40px;
+        }
+
+        /* Image Slideshow */
+        .slideshow {
+            position: relative;
+            width: 100%;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .slideshow-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slideshow-images img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .slideshow-nav {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .slideshow-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slideshow-dot.active {
+            background: var(--accent-blue);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .slideshow-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--mono-mid);
+            color: var(--mono-white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slideshow-arrow:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .slideshow-arrow--prev {
+            left: 16px;
+        }
+
+        .slideshow-arrow--next {
+            right: 16px;
+        }
+    </style>
+</head>
+
+<body class="journey-page">
+    <!-- Page Transition Overlay -->
+    <div id="page-transition">
+        <div class="rect-bar" style="--i:0"></div>
+        <div class="rect-bar" style="--i:1"></div>
+        <div class="rect-bar" style="--i:2"></div>
+        <div class="rect-bar" style="--i:3"></div>
+        <div class="rect-bar" style="--i:4"></div>
+        <div class="rect-bar" style="--i:5"></div>
+    </div>
+    <style>
+        #page-transition {
+            position: fixed;
+            inset: 0;
+            z-index: 99998;
+            pointer-events: none;
+            display: flex
+        }
+
+        #page-transition .rect-bar {
+            flex: 1;
+            height: 100%;
+            background: #fff;
+            transform: translateY(0%)
+        }
+
+        #page-transition.entering .rect-bar {
+            animation: rectUp .6s cubic-bezier(.65, 0, .35, 1) forwards;
+            animation-delay: calc(var(--i)*.05s)
+        }
+
+        #page-transition.leaving {
+            pointer-events: all
+        }
+
+        #page-transition.leaving .rect-bar {
+            transform: translateY(-100%);
+            animation: rectDown .6s cubic-bezier(.65, 0, .35, 1) forwards;
+            animation-delay: calc(var(--i)*.05s)
+        }
+
+        #page-transition.idle .rect-bar {
+            transform: translateY(-100%)
+        }
+
+        @keyframes rectUp {
+            from {
+                transform: translateY(0%)
+            }
+
+            to {
+                transform: translateY(-100%)
+            }
+        }
+
+        @keyframes rectDown {
+            from {
+                transform: translateY(100%)
+            }
+
+            to {
+                transform: translateY(0%)
+            }
+        }
+    </style>
+    <script>
+        (function () {
+            const t = document.getElementById('page-transition');
+            t.classList.add('entering');
+            setTimeout(() => { t.classList.remove('entering'); t.classList.add('idle'); }, 800);
+            document.addEventListener('click', function (e) {
+                const link = e.target.closest('a');
+                if (link && link.href && !link.target && link.hostname === window.location.hostname && !link.getAttribute('href').startsWith('#')) {
+                    e.preventDefault(); t.classList.remove('idle'); t.classList.add('leaving');
+                    setTimeout(() => { window.location.href = link.href; }, 800);
+                }
+            });
+        })();
+    </script>
+    <main class="project-page">
+        <div class="project-container">
+            <a href="index.html#projects" class="back-link">
+                <i class="bi bi-arrow-left"></i> Back to Projects
+            </a>
+
+            <h1 class="project-title">Shiba Winter Cafe</h1>
+
+            <div class="project-links">
+                <a href="https://github.com/Derek-Wen/ShibaCafe" target="_blank" class="project-btn">
+                    <i class="bi bi-github"></i> View Code
+                </a>
+                <a href="https://shibawintercafe.com/" target="_blank" class="project-btn project-btn--primary">
+                    Play Now
+                </a>
+            </div>
+
+            <div class="project-description">
+                <p>
+                    A cozy winter-themed cafe experience featuring adorable Shiba Inu companions. This project combines
+                    warm aesthetics with interactive elements to create an immersive and relaxing virtual environment.
+                </p>
+                <p>
+                    The cafe atmosphere is designed to evoke feelings of warmth and comfort during cold winter days,
+                    complete with soft lighting, snow-covered windows, and the gentle company of friendly Shiba dogs.
+                </p>
+            </div>
+
+            <!-- Image Slideshow -->
+            <div class="slideshow" id="slideshow">
+                <div class="slideshow-images" id="slideshowImages">
+                    <img src="assets/img/portfolio/shiba-cafe.jpg" alt="Shiba Winter Cafe Main">
+                    <img src="assets/img/portfolio/shiba2.jpg" alt="Shiba Winter Cafe 2">
+                    <img src="assets/img/portfolio/shiba3.jpg" alt="Shiba Winter Cafe 3">
+                    <img src="assets/img/portfolio/shiba4.png" alt="Shiba Winter Cafe 4">
+                </div>
+                <button class="slideshow-arrow slideshow-arrow--prev" onclick="changeSlide(-1)">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="slideshow-arrow slideshow-arrow--next" onclick="changeSlide(1)">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <div class="slideshow-nav" id="slideshowNav"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Slideshow functionality
+        let currentSlide = 0;
+        const images = document.querySelectorAll('#slideshowImages img');
+        const totalSlides = images.length;
+        const navContainer = document.getElementById('slideshowNav');
+
+        // Create navigation dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'slideshow-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            navContainer.appendChild(dot);
+        }
+
+        function updateSlideshow() {
+            const container = document.getElementById('slideshowImages');
+            container.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update dots
+            document.querySelectorAll('.slideshow-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateSlideshow();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlideshow();
+        }
+    </script>
+</body>
+
+</html>
