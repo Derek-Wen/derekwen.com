@@ -754,17 +754,6 @@ html {
   padding-left: 32px;
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  /* Faint background line */
-}
-
 /* Animated timeline line that draws on scroll */
 .timeline-line {
   position: absolute;
@@ -775,7 +764,6 @@ html {
   background: linear-gradient(180deg, var(--mono-white) 0%, var(--mono-silver) 50%, var(--mono-mid) 100%);
   transform-origin: top;
   transform: scaleY(0);
-  /* Starts hidden, GSAP will animate */
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
