@@ -1,1 +1,1 @@
-derekwen.dev
+derekwen.com
