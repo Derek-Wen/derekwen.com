@@ -495,6 +495,11 @@ function initSmoothScroll() {
           behavior: 'smooth',
           block: 'start'
         });
+
+        // Clean up URL by removing hash after scroll
+        setTimeout(() => {
+          history.replaceState(null, '', window.location.pathname);
+        }, 100);
       }
     });
   });
