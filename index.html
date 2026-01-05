@@ -41,6 +41,21 @@
     <canvas id="fluid"></canvas>
   </div>
 
+  <!-- Video Modal -->
+  <div id="video-modal" class="video-modal">
+    <div class="video-modal__backdrop"></div>
+    <div class="video-modal__content">
+      <div class="video-modal__player">
+        <iframe id="video-modal-iframe" src="" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <a id="video-modal-youtube-link" href="" target="_blank" class="video-modal__youtube-link">
+        Open on YouTube
+      </a>
+    </div>
+  </div>
+
   <!-- Preloader -->
   <div id="preloader"
     style="position:fixed;inset:0;z-index:99999;background:#05080f;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s;">

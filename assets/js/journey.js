@@ -51,11 +51,12 @@ class CursorSwitcher {
 
   init() {
     const sections = document.querySelectorAll('section[id]');
+    const footer = document.querySelector('.journey-footer');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-          const sectionId = entry.target.id;
+          const sectionId = entry.target.id || entry.target.tagName.toLowerCase();
           const shouldHideFluid = this.normalCursorSections.includes(sectionId);
 
           if (shouldHideFluid && this.currentMode !== 'normal') {
@@ -73,6 +74,7 @@ class CursorSwitcher {
     });
 
     sections.forEach(section => observer.observe(section));
+    if (footer) observer.observe(footer);
   }
 
   showFluid() {
@@ -883,3 +885,54 @@ window.addEventListener('load', () => {
   // Re-init scroll thread after full page load
   new ScrollThread();
 });
+
+// ============================================================
+// ============================================================
+// VIDEO MODAL
+// ============================================================
+function initVideoModal() {
+  const modal = document.getElementById('video-modal');
+  const iframe = document.getElementById('video-modal-iframe');
+  const youtubeLink = document.getElementById('video-modal-youtube-link');
+  const backdrop = modal.querySelector('.video-modal__backdrop');
+
+  // Get all gallery items with YouTube links
+  const galleryItems = document.querySelectorAll('.gallery-item[href*="youtube.com"]');
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const youtubeUrl = item.getAttribute('href');
+      const videoId = extractYouTubeId(youtubeUrl);
+
+      if (videoId) {
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        youtubeLink.href = youtubeUrl;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('active');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  function extractYouTubeId(url) {
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+    return match ? match[1] : null;
+  }
+}
+
+// Initialize video modal
+document.addEventListener('DOMContentLoaded', initVideoModal);
