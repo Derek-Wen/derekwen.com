@@ -41,8 +41,8 @@ class CursorSwitcher {
     this.fluidContainer = document.querySelector('.fluid-cursor-container');
     this.currentMode = 'fluid';
 
-    // Sections that use normal cursor (no fluid effect)
-    this.normalCursorSections = ['career', 'projects'];
+    // Only these sections show the fluid cursor effect
+    this.fluidSections = ['hero'];
 
     if ('ontouchstart' in window) return;
 
@@ -57,14 +57,14 @@ class CursorSwitcher {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
           const sectionId = entry.target.id || entry.target.tagName.toLowerCase();
-          const shouldHideFluid = this.normalCursorSections.includes(sectionId);
+          const shouldShowFluid = this.fluidSections.includes(sectionId);
 
-          if (shouldHideFluid && this.currentMode !== 'normal') {
-            this.hideFluid();
-            this.currentMode = 'normal';
-          } else if (!shouldHideFluid && this.currentMode !== 'fluid') {
+          if (shouldShowFluid && this.currentMode !== 'fluid') {
             this.showFluid();
             this.currentMode = 'fluid';
+          } else if (!shouldShowFluid && this.currentMode !== 'normal') {
+            this.hideFluid();
+            this.currentMode = 'normal';
           }
         }
       });
@@ -311,72 +311,6 @@ class AuroraBackground {
         orb.style.transform = `translateY(${scrollY * speed}px)`;
       });
     }, { passive: true });
-  }
-}
-
-// ============================================================
-// 3D CARD TILT EFFECT (Inspira Style)
-// ============================================================
-class Card3DTilt {
-  constructor() {
-    this.cards = document.querySelectorAll('.project-card, .toc-card');
-    if (this.cards.length === 0) return;
-
-    this.init();
-  }
-
-  init() {
-    this.cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => this.onMouseMove(e, card));
-      card.addEventListener('mouseleave', (e) => this.onMouseLeave(e, card));
-      card.addEventListener('mouseenter', (e) => this.onMouseEnter(e, card));
-    });
-  }
-
-  onMouseMove(e, card) {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (centerX - x) / 10;
-
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-    // Move shine effect
-    const shine = card.querySelector('.card-shine') || this.createShine(card);
-    shine.style.left = `${x}px`;
-    shine.style.top = `${y}px`;
-  }
-
-  onMouseLeave(e, card) {
-    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-    card.style.transition = 'transform 0.5s ease-out';
-  }
-
-  onMouseEnter(e, card) {
-    card.style.transition = 'transform 0.1s ease-out';
-  }
-
-  createShine(card) {
-    const shine = document.createElement('div');
-    shine.className = 'card-shine';
-    shine.style.cssText = `
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-    `;
-    card.style.position = 'relative';
-    card.style.overflow = 'hidden';
-    card.appendChild(shine);
-    return shine;
   }
 }
 
@@ -798,61 +732,6 @@ function hidePreloader() {
   }
 }
 
-// ============================================================
-// PARALLAX STARS
-// ============================================================
-class ParallaxStars {
-  constructor() {
-    this.layers = [
-      { selector: '.star-layer--1', starCount: 80, speed: 0.1 },
-      { selector: '.star-layer--2', starCount: 50, speed: 0.3 },
-      { selector: '.star-layer--3', starCount: 30, speed: 0.5 }
-    ];
-
-    this.init();
-  }
-
-  init() {
-    this.layers.forEach(layer => {
-      const element = document.querySelector(layer.selector);
-      if (element) {
-        this.generateStars(element, layer.starCount);
-      }
-    });
-
-    this.setupParallax();
-  }
-
-  generateStars(container, count) {
-    for (let i = 0; i < count; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-
-      // Add slight size variation
-      const sizeVariation = 0.5 + Math.random() * 1;
-      star.style.transform = `scale(${sizeVariation})`;
-
-      container.appendChild(star);
-    }
-  }
-
-  setupParallax() {
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-
-      this.layers.forEach(layer => {
-        const element = document.querySelector(layer.selector);
-        if (element) {
-          const yOffset = scrollY * layer.speed;
-          element.style.transform = `translateY(-${yOffset}px)`;
-        }
-      });
-    }, { passive: true });
-  }
-}
-
 
 // ============================================================
 // INITIALIZE
@@ -862,11 +741,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initLenis();
 
   // Visual effects
-  new CursorSwitcher(); // Manages both cursor types based on section
+  new CursorSwitcher();
   new AuroraBackground();
-  new Card3DTilt();
   new ScrollThread();
-  new ParallaxStars(); // Parallax star background
 
   // Functionality
   initScrollProgress();
