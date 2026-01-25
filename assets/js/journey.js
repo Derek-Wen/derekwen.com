@@ -613,35 +613,18 @@ class ScrollThread {
 
     let d = `M ${waypoints[0].x} ${waypoints[0].y}`;
 
-    // Loop positions (between which waypoint pairs to add loops)
-    const loopPositions = [1, 3, 4]; // Add loops after these indices
-
     for (let i = 1; i < waypoints.length; i++) {
       const prev = waypoints[i - 1];
       const curr = waypoints[i];
 
-      // Check if we should add a decorative loop
-      if (loopPositions.includes(i - 1)) {
-        // Add a decorative loop
-        const loopDirection = (i % 2 === 0) ? 1 : -1; // Alternate left/right
-        const midY = (prev.y + curr.y) / 2;
-        const loopRadius = 8 + Math.random() * 4;
+      // Smooth bezier curve between points
+      const midY = (prev.y + curr.y) / 2;
+      const tension = 0.5;
 
-        // Bezier curve that creates a small loop
-        const loopX = prev.x + (loopDirection * loopRadius);
+      const cp1Y = prev.y + (curr.y - prev.y) * tension;
+      const cp2Y = prev.y + (curr.y - prev.y) * (1 - tension);
 
-        d += ` C ${prev.x} ${prev.y + 40}, ${loopX} ${midY - 30}, ${loopX} ${midY}`;
-        d += ` C ${loopX} ${midY + 30}, ${prev.x} ${midY + 60}, ${curr.x} ${curr.y}`;
-      } else {
-        // Regular smooth curve
-        const midY = (prev.y + curr.y) / 2;
-        const tension = 0.4 + Math.random() * 0.2; // Organic tension variation
-
-        const cp1Y = prev.y + (curr.y - prev.y) * tension;
-        const cp2Y = prev.y + (curr.y - prev.y) * (1 - tension);
-
-        d += ` C ${prev.x} ${cp1Y}, ${curr.x} ${cp2Y}, ${curr.x} ${curr.y}`;
-      }
+      d += ` C ${prev.x} ${cp1Y}, ${curr.x} ${cp2Y}, ${curr.x} ${curr.y}`;
     }
 
     return d;

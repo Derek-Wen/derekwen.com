@@ -413,10 +413,11 @@ html {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 100px;
+  padding-top: 80px;
+  padding-bottom: 40px;
 }
 
 .hero-section .section-heading {
@@ -835,7 +836,6 @@ html {
   .scroll-thread {
     display: none;
   }
-
 }
 
 
