@@ -1,0 +1,5 @@
+# Development source (not needed for production)
+_video-visual-dev/
+
+# Node modules
+node_modules/

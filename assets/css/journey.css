@@ -840,6 +840,32 @@ html {
 
 
 /* ============================================================
+   VIDEO VISUAL (WebGPU Three.js)
+   ============================================================ */
+.video-visual-container {
+  width: 100%;
+  height: 600px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.video-visual-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .video-visual-container {
+    height: 300px;
+  }
+}
+
+/* ============================================================
    VIDEO/MUSIC GALLERY
    ============================================================ */
 .gallery-grid {
