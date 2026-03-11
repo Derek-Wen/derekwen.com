@@ -549,10 +549,9 @@ html {
   top: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, var(--mono-white) 0%, var(--mono-silver) 50%, var(--mono-mid) 100%);
+  background: var(--mono-white);
   transform-origin: top;
   transform: scaleY(0);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .timeline-item {
@@ -585,6 +584,7 @@ html {
 
 .timeline-item:hover::before {
   transform: scale(1.2);
+  box-shadow: none;
 }
 
 .timeline-date {
@@ -758,11 +758,8 @@ html {
 
 .thread-project__card:hover {
   transform: translateY(-5px) scale(1.02);
-  border-color: rgba(74, 144, 217, 0.3);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 0 30px rgba(74, 144, 217, 0.35),
-    inset 0 0 0 1px rgba(74, 144, 217, 0.25);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .thread-project__image {
@@ -865,6 +862,26 @@ html {
   }
 }
 
+/* Drag Me Hint Overlay */
+.drag-me-hint {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 150px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .drag-me-hint {
+    width: 100px;
+    top: 8px;
+    right: 8px;
+  }
+}
+
 /* ============================================================
    VIDEO/MUSIC GALLERY
    ============================================================ */
@@ -898,11 +915,8 @@ html {
 
 .gallery-item:hover {
   transform: translateY(-8px) scale(1.02);
-  border-color: rgba(74, 144, 217, 0.3);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 0 30px rgba(74, 144, 217, 0.35),
-    inset 0 0 0 1px rgba(74, 144, 217, 0.25);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .gallery-item img {
