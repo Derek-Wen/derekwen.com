@@ -30,6 +30,16 @@
   <!-- Typed.js for typing effect -->
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
+  <!-- Three.js import map (for piano visualizer) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+
   <!-- Journey CSS -->
   <link href="assets/css/journey.css" rel="stylesheet">
 </head>
@@ -102,9 +112,7 @@
       <div class="aurora-orb aurora-orb--3"></div>
     </div>
 
-    <!-- ============================================================
-         HERO SECTION
-         ============================================================ -->
+    <!-- HERO SECTION -->
     <section id="hero" class="journey-section hero-section">
       <div class="journey-section__content">
         <p class="hero-subtitle reveal">&nbsp;</p>
@@ -152,9 +160,7 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         CAREER SECTION
-         ============================================================ -->
+    <!-- CAREER SECTION -->
     <section id="career" class="journey-section">
       <div class="journey-section__content">
         <p class="section-label reveal">career</p>
@@ -220,9 +226,7 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         PROJECTS SECTION
-         ============================================================ -->
+    <!-- PROJECTS SECTION -->
     <section id="projects" class="journey-section projects-thread-section">
       <div class="journey-section__content">
         <p class="section-label reveal">building things</p>
@@ -348,9 +352,7 @@
     </section>
 
 
-    <!-- ============================================================
-         VIDEO EDITING SECTION
-         ============================================================ -->
+    <!-- VIDEO EDITING SECTION -->
     <section id="video-editing" class="journey-section">
       <div class="journey-section__content">
         <p class="section-label reveal">creative outlet</p>
@@ -488,14 +490,15 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         MUSIC SECTION
-         ============================================================ -->
+    <!-- MUSIC SECTION -->
     <section id="music" class="journey-section">
       <div class="journey-section__content">
         <p class="section-label reveal">another creative outlet</p>
         <h2 class="section-heading reveal">music</h2>
         <p class="section-text reveal">My personal songs</p>
+
+        <!-- Piano Visualizer -->
+        <div id="piano-visualizer" class="piano-visualizer reveal"></div>
 
         <!-- Year 4 -->
         <div class="music-year reveal">
@@ -599,9 +602,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
+    <!-- FOOTER -->
     <footer class="journey-footer">
       <p class="journey-footer__message reveal">thanks for stopping by :)</p>
       <div class="social-links reveal" style="margin-bottom: 24px;">
@@ -625,6 +626,9 @@
 
   <!-- Journey JS -->
   <script src="assets/js/journey.js"></script>
+
+  <!-- Piano Visualizer (Three.js ES module) -->
+  <script type="module" src="assets/js/piano-visualizer.js"></script>
 
   <!-- Fluid Cursor -->
   <script src="assets/js/fluid-cursor.js"></script>

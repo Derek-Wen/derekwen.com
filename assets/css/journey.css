@@ -4,7 +4,7 @@
   --mono-charcoal: #0f0f0f;
   --mono-dark: #1a1a1a;
   --mono-gray: #2a2a2a;
-  --mono-mid: #4a4a4a;
+  --mono-mid: #ffffff;
   --mono-silver: #8a8a8a;
   --mono-light: #c5c5c5;
   --mono-off-white: #e8e8e8;
@@ -100,9 +100,7 @@ html {
   scrollbar-width: none;
 }
 
-/* ============================================================
-   ATMOSPHERIC BACKGROUND - DISABLED (Plain black)
-   ============================================================ */
+/* ATMOSPHERIC BACKGROUND - DISABLED (Plain black) */
 .aurora-bg {
   display: none;
 }
@@ -213,9 +211,7 @@ html {
 
 /* Old aurora keyframes removed, now using atmosphereMove and orbFloat */
 
-/* ============================================================
-   FLOATING NAVIGATION
-   ============================================================ */
+/* FLOATING NAVIGATION */
 .floating-nav {
   position: fixed;
   top: 20px;
@@ -314,9 +310,7 @@ html {
   }
 }
 
-/* ============================================================
-   SCROLL PROGRESS INDICATOR (Right side, next to scrollbar)
-   ============================================================ */
+/* SCROLL PROGRESS INDICATOR (Right side, next to scrollbar) */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -338,17 +332,13 @@ html {
 }
 
 
-/* ============================================================
-   JOURNEY CONTAINER
-   ============================================================ */
+/* JOURNEY CONTAINER */
 .journey {
   position: relative;
   min-height: 100vh;
 }
 
-/* ============================================================
-   SECTIONS WITH TRANSITIONS
-   ============================================================ */
+/* SECTIONS WITH TRANSITIONS */
 .journey-section {
   position: relative;
   padding: 30px 24px;
@@ -406,9 +396,7 @@ html {
 }
 
 
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
+/* HERO SECTION */
 .journey-section.hero-section {
   min-height: 100vh;
   display: flex;
@@ -534,9 +522,7 @@ html {
 
 
 
-/* ============================================================
-   TIMELINE (Career Section)
-   ============================================================ */
+/* TIMELINE (Career Section) */
 .timeline {
   position: relative;
   padding-left: 32px;
@@ -636,9 +622,7 @@ html {
   font-weight: 600;
 }
 
-/* ============================================================
-   SCROLL THREAD PROJECTS SECTION
-   ============================================================ */
+/* SCROLL THREAD PROJECTS SECTION */
 .projects-thread-section {
   min-height: auto;
   padding-bottom: 0;
@@ -836,9 +820,7 @@ html {
 }
 
 
-/* ============================================================
-   VIDEO VISUAL (WebGPU Three.js)
-   ============================================================ */
+/* VIDEO VISUAL (WebGPU Three.js) */
 .video-visual-container {
   width: 100%;
   height: 600px;
@@ -882,9 +864,98 @@ html {
   }
 }
 
-/* ============================================================
-   VIDEO/MUSIC GALLERY
-   ============================================================ */
+/* PIANO VISUALIZER */
+.piano-visualizer {
+  margin-top: 40px;
+  margin-bottom: 0;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  background: var(--mono-black);
+  border: none;
+}
+
+.piano-visualizer canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.piano-volume {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 14px 16px 10px;
+  margin-bottom: 48px;
+  background: var(--mono-black);
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0 0 16px 16px;
+  user-select: none;
+}
+
+.piano-volume__credit {
+  width: 100%;
+  text-align: right;
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--mono-mid);
+  margin-top: -6px;
+}
+
+.piano-volume__icon {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.piano-volume__icon:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.piano-volume__slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.piano-volume__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.piano-volume__slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.piano-volume__slider::-moz-range-track {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  border: none;
+}
+
+
+/* VIDEO/MUSIC GALLERY */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -982,9 +1053,7 @@ html {
   border-color: transparent transparent transparent #fff;
 }
 
-/* ============================================================
-   MUSIC SECTION
-   ============================================================ */
+/* MUSIC SECTION */
 .music-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1037,9 +1106,7 @@ html {
   border-radius: 12px;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+/* FOOTER */
 .journey-footer {
   padding: 80px 24px;
   text-align: center;
@@ -1070,9 +1137,7 @@ html {
   color: var(--mono-mid);
 }
 
-/* ============================================================
-   REVEAL ANIMATIONS
-   ============================================================ */
+/* REVEAL ANIMATIONS */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -1131,9 +1196,7 @@ html {
   transition-delay: 300ms;
 }
 
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
+/* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -1156,9 +1219,7 @@ html {
   }
 }
 
-/* ============================================================
-   UTILITY CLASSES
-   ============================================================ */
+/* UTILITY CLASSES */
 .text-center {
   text-align: center;
 }
@@ -1239,9 +1300,7 @@ p.section-text,
   transform: none !important;
 }
 
-/* ============================================================
-   VIDEO MODAL
-   ============================================================ */
+/* VIDEO MODAL */
 .video-modal {
   position: fixed;
   inset: 0;
@@ -1284,7 +1343,7 @@ p.section-text,
   height: 100%;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 0 60px rgba(74, 144, 217, 0.4), 0 0 120px rgba(74, 144, 217, 0.2), 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .video-modal__player iframe {
@@ -1293,27 +1352,5 @@ p.section-text,
 }
 
 .video-modal__youtube-link {
-  position: absolute;
-  bottom: -45px;
-  left: 0;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: rgba(74, 144, 217, 0.15);
-  border: 1px solid rgba(74, 144, 217, 0.3);
-  border-radius: 20px;
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(74, 144, 217, 0.2);
-}
-
-.video-modal__youtube-link:hover {
-  background: rgba(74, 144, 217, 0.4);
-  border-color: rgba(74, 144, 217, 0.6);
-  box-shadow: 0 0 25px rgba(74, 144, 217, 0.4);
-  transform: translateY(-2px);
+  display: none;
 }

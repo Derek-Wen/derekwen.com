@@ -232,9 +232,7 @@ class SleekLineCursor {
   }
 }
 
-// ============================================================
 // AURORA BACKGROUND ANIMATION
-// ============================================================
 class AuroraBackground {
   constructor() {
     this.container = document.querySelector('.aurora-bg');
@@ -314,9 +312,7 @@ class AuroraBackground {
   }
 }
 
-// ============================================================
 // SCROLL PROGRESS INDICATOR
-// ============================================================
 function initScrollProgress() {
   const progressBar = document.querySelector('.scroll-progress__bar');
   if (!progressBar) return;
@@ -329,9 +325,7 @@ function initScrollProgress() {
   }, { passive: true });
 }
 
-// ============================================================
 // FLOATING NAV
-// ============================================================
 function initFloatingNav() {
   const nav = document.querySelector('.floating-nav');
   const toggle = document.querySelector('.floating-nav__toggle');
@@ -375,9 +369,7 @@ function initFloatingNav() {
   sections.forEach(section => observer.observe(section));
 }
 
-// ============================================================
 // REVEAL ANIMATIONS
-// ============================================================
 function initRevealAnimations() {
   const revealElements = document.querySelectorAll('.reveal, .timeline-item, .project-card, .gallery-item, .music-embed, .journey-section');
   if (revealElements.length === 0) return;
@@ -396,9 +388,7 @@ function initRevealAnimations() {
   revealElements.forEach(el => observer.observe(el));
 }
 
-// ============================================================
 // STAGGER REVEAL
-// ============================================================
 function initStaggerReveal() {
   const staggerGroups = document.querySelectorAll('.stagger-reveal');
   if (staggerGroups.length === 0) return;
@@ -415,9 +405,7 @@ function initStaggerReveal() {
   staggerGroups.forEach(group => observer.observe(group));
 }
 
-// ============================================================
 // SMOOTH SCROLL
-// ============================================================
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -441,9 +429,7 @@ function initSmoothScroll() {
   });
 }
 
-// ============================================================
 // TYPED.JS
-// ============================================================
 function initTyped() {
   const typedElement = document.querySelector('.typed');
   if (!typedElement || typeof Typed === 'undefined') return;
@@ -461,9 +447,7 @@ function initTyped() {
   });
 }
 
-// ============================================================
 // GSAP ANIMATIONS (if available)
-// ============================================================
 function initGSAPAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.log('GSAP not loaded, using fallback animations');
@@ -545,9 +529,7 @@ function initGSAPAnimations() {
 }
 
 
-// ============================================================
 // SCROLL THREAD - SVG PATH DRAWING WITH GSAP
-// ============================================================
 class ScrollThread {
   constructor() {
     this.container = document.querySelector('.scroll-thread-container');
@@ -666,9 +648,7 @@ class ScrollThread {
   }
 }
 
-// ============================================================
 // LENIS SMOOTH SCROLLING
-// ============================================================
 function initLenis() {
   if (typeof Lenis === 'undefined') {
     console.log('Lenis not loaded');
@@ -704,7 +684,6 @@ function initLenis() {
 }
 
 // PRELOADER
-// ============================================================
 function hidePreloader() {
   const preloader = document.getElementById('preloader');
   if (preloader) {
@@ -716,9 +695,7 @@ function hidePreloader() {
 }
 
 
-// ============================================================
 // INITIALIZE
-// ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   // Init Lenis first for smooth scrolling
   initLenis();
@@ -746,10 +723,7 @@ window.addEventListener('load', () => {
   new ScrollThread();
 });
 
-// ============================================================
-// ============================================================
 // VIDEO MODAL
-// ============================================================
 function initVideoModal() {
   const modal = document.getElementById('video-modal');
   const iframe = document.getElementById('video-modal-iframe');
