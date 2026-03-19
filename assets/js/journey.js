@@ -715,6 +715,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initGSAPAnimations();
 
   setTimeout(hidePreloader, 300);
+
+  // disable right-click on visual elements
+  document.querySelectorAll('.video-visual-iframe').forEach(el => {
+    el.addEventListener('contextmenu', (e) => e.preventDefault());
+  });
+
+  // fade out drag hint on interaction (overlay to intercept first click over iframe)
+  const dragHint = document.querySelector('.drag-me-hint');
+  if (dragHint) {
+    const container = dragHint.closest('.video-visual-container');
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:absolute;inset:0;z-index:5;cursor:grab;';
+    container.appendChild(overlay);
+
+    const hide = () => {
+      dragHint.style.opacity = '0';
+      overlay.remove();
+      setTimeout(() => dragHint.remove(), 500);
+    };
+    overlay.addEventListener('mousedown', hide);
+    overlay.addEventListener('touchstart', hide, { passive: true });
+  }
 });
 
 window.addEventListener('load', () => {

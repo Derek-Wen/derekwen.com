@@ -157,6 +157,9 @@ const KB_LINE_GLOW_COLOR = 0xffffff;
 const KB_LINE_GLOW_OPACITY = 0;
 const KB_LINE_GLOW_THICKNESS = 0;
 
+const MOUSE_HOVER_RADIUS = 150;
+const MOUSE_HOVER_COLOR = { r: 1, g: 0.95, b: 0.8 };
+
 // PIANO VISUALIZER
 class PianoVisualizer {
   constructor(containerId, midiUrl) {
@@ -189,6 +192,13 @@ class PianoVisualizer {
     this.synth = null;
     this.audioStarted = false;
 
+    this._isDragging = false;
+    this._lastPlayedNote = -1;
+    this._interactiveNotes = {};
+    this._mouseX = -9999;
+    this._mouseY = -9999;
+    this._mouseOnCanvas = false;
+
     this.W = 0;
     this.H = window.innerWidth <= 768 ? 300 : 500;
 
@@ -206,6 +216,8 @@ class PianoVisualizer {
     this.initParticles();
     this.createKeyboard();
     this.createVolumeSlider();
+    this.createPlayHint();
+    this.setupMouseInteraction();
     this.setupAutoPlay();
     this.setupAudioOnGesture();
     this.animate();
@@ -287,6 +299,7 @@ class PianoVisualizer {
     this.renderer.setClearColor(0x000000, 0);
 
     const canvas = this.renderer.domElement;
+    canvas.addEventListener('contextmenu', (e) => e.preventDefault());
     this.container.appendChild(canvas);
 
     const rt = new THREE.WebGLRenderTarget(this.W, this.H, { type: THREE.HalfFloatType });
@@ -406,6 +419,139 @@ class PianoVisualizer {
     this.kbGroup.add(hitLine);
 
     this.scene.add(this.kbGroup);
+  }
+
+  // MOUSE INTERACTION
+  xToNote(clientX) {
+    const rect = this.renderer.domElement.getBoundingClientRect();
+    const x = clientX - rect.left;
+
+    // check black keys first (they overlap white keys)
+    for (let n = this.maxNote; n >= this.minNote; n--) {
+      const k = this.keyMap[n];
+      if (!k || !k.black) continue;
+      if (x >= k.x && x < k.x + k.w) return n;
+    }
+    for (let n = this.minNote; n <= this.maxNote; n++) {
+      const k = this.keyMap[n];
+      if (!k || k.black) continue;
+      if (x >= k.x && x < k.x + k.w) return n;
+    }
+    return -1;
+  }
+
+  playInteractiveNote(midi) {
+    if (midi < 0 || midi === this._lastPlayedNote) return;
+    this._lastPlayedNote = midi;
+
+    // trigger sound
+    if (this.synth && this.audioStarted) {
+      const noteName = Tone.Frequency(midi, 'midi').toNote();
+      this.synth.triggerAttackRelease(noteName, 0.4, undefined, 0.6);
+    }
+
+    // spawn splash particles
+    const k = this.keyMap[midi];
+    if (!k) return;
+    const color = noteColor(midi);
+    const dpr = this.renderer.getPixelRatio();
+
+    for (let i = 0; i < SPLASH_COUNT; i++) {
+      const p = this.getParticle();
+      if (!p) return;
+
+      const angle = Math.random() * Math.PI;
+      const speed = SPLASH_SPEED_MIN + Math.random() * (SPLASH_SPEED_MAX - SPLASH_SPEED_MIN);
+
+      p.x = k.x + k.w / 2 + (Math.random() - 0.5) * k.w;
+      p.y = KB_HEIGHT;
+      p.z = (Math.random() - 0.5) * 5;
+      p.vx = Math.cos(angle) * speed * (Math.random() > 0.5 ? 1 : -1);
+      p.vy = Math.sin(angle) * speed;
+      p.vz = (Math.random() - 0.5) * 20;
+      p.gravity = -80;
+      p.r = Math.min(1, color.r * 2);
+      p.g = Math.min(1, color.g * 2);
+      p.b = Math.min(1, color.b * 2);
+      p.size = (4 + Math.random() * 6) * dpr;
+      p.life = 0.4 + Math.random() * 0.5;
+      p.maxLife = p.life;
+      p.alpha = 1;
+    }
+
+    // track for keyboard highlight
+    this._interactiveNotes[midi] = performance.now() + 300;
+  }
+
+  createPlayHint() {
+    const hint = document.createElement('img');
+    hint.src = 'assets/img/play_here.png';
+    hint.className = 'piano-play-hint';
+    this.container.style.position = 'relative';
+    this.container.appendChild(hint);
+    this._playHint = hint;
+  }
+
+  hidePlayHint() {
+    if (this._playHint) {
+      this._playHint.style.opacity = '0';
+      setTimeout(() => this._playHint?.remove(), 500);
+      this._playHint = null;
+    }
+  }
+
+  setupMouseInteraction() {
+    const canvas = this.renderer.domElement;
+    canvas.style.cursor = 'pointer';
+
+    canvas.addEventListener('mousedown', (e) => {
+      this._isDragging = true;
+      this._lastPlayedNote = -1;
+      this.hidePlayHint();
+      const note = this.xToNote(e.clientX);
+      this.playInteractiveNote(note);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      this._mouseX = e.clientX - rect.left;
+      this._mouseY = this.H - (e.clientY - rect.top);
+      this._mouseOnCanvas = true;
+
+      if (!this._isDragging) return;
+      const note = this.xToNote(e.clientX);
+      this.playInteractiveNote(note);
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      this._isDragging = false;
+      this._lastPlayedNote = -1;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      this._isDragging = false;
+      this._lastPlayedNote = -1;
+      this._mouseOnCanvas = false;
+    });
+
+    // touch support
+    canvas.addEventListener('touchstart', (e) => {
+      this._isDragging = true;
+      this._lastPlayedNote = -1;
+      const touch = e.touches[0];
+      this.playInteractiveNote(this.xToNote(touch.clientX));
+    }, { passive: true });
+
+    canvas.addEventListener('touchmove', (e) => {
+      if (!this._isDragging) return;
+      const touch = e.touches[0];
+      this.playInteractiveNote(this.xToNote(touch.clientX));
+    }, { passive: true });
+
+    canvas.addEventListener('touchend', () => {
+      this._isDragging = false;
+      this._lastPlayedNote = -1;
+    });
   }
 
   // VOLUME SLIDER
@@ -643,10 +789,14 @@ class PianoVisualizer {
       this.spawnNoteParticles(time);
     }
 
-    // highlight active keys
+    // highlight active keys (midi playback + interactive)
     const active = new Set();
     for (const n of this.notes) {
       if (time >= n.time && time < n.time + n.duration) active.add(n.midi);
+    }
+    for (const [midi, expiry] of Object.entries(this._interactiveNotes)) {
+      if (now < expiry) active.add(Number(midi));
+      else delete this._interactiveNotes[midi];
     }
     this.updateKeyboard(active);
 
@@ -749,11 +899,28 @@ class PianoVisualizer {
       pos[idx * 3] = p.x;
       pos[idx * 3 + 1] = p.y;
       pos[idx * 3 + 2] = p.z;
-      col[idx * 3] = p.r;
-      col[idx * 3 + 1] = p.g;
-      col[idx * 3 + 2] = p.b;
-      sizes[idx] = p.size;
-      alphas[idx] = p.alpha;
+
+      let cr = p.r, cg = p.g, cb = p.b;
+      let sz = p.size, al = p.alpha;
+      if (this._mouseOnCanvas) {
+        const dx = p.x - this._mouseX;
+        const dy = p.y - this._mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MOUSE_HOVER_RADIUS) {
+          const t = 1 - dist / MOUSE_HOVER_RADIUS;
+          const blend = t * t * (3 - 2 * t);
+          cr += (MOUSE_HOVER_COLOR.r - cr) * blend;
+          cg += (MOUSE_HOVER_COLOR.g - cg) * blend;
+          cb += (MOUSE_HOVER_COLOR.b - cb) * blend;
+          sz *= 1 + blend * 0.5;
+          al = Math.min(1, al + blend * 0.3);
+        }
+      }
+      col[idx * 3] = cr;
+      col[idx * 3 + 1] = cg;
+      col[idx * 3 + 2] = cb;
+      sizes[idx] = sz;
+      alphas[idx] = al;
       idx++;
     }
 

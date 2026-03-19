@@ -854,6 +854,7 @@ html {
   pointer-events: none;
   opacity: 0.85;
   z-index: 10;
+  transition: opacity 0.5s ease;
 }
 
 @media (max-width: 768px) {
@@ -892,6 +893,18 @@ html {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 0 0 16px 16px;
   user-select: none;
+}
+
+.piano-play-hint {
+  position: absolute;
+  bottom: 50px;
+  left: 12px;
+  width: 180px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.8;
+  transition: opacity 0.5s ease;
+  z-index: 10;
 }
 
 .piano-volume__credit {
